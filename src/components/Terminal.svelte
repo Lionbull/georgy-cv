@@ -45,8 +45,8 @@
          * Function to execute the command
          * Pushes the command to the history and resets the input
         */
-        handleCommand(input);
-        commandHistory.push(input);
+        handleCommand(input.toLowerCase());
+        commandHistory.push(input.toLowerCase());
         historyIndex = commandHistory.length;
         input = "";
         setTimeout(() => window.scrollTo(0, document.body.scrollHeight), 0);
