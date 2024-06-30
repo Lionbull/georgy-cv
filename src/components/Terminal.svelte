@@ -114,7 +114,7 @@
         Welcome to the CV of <span class="intext-highlight">Georgy Pokazeev</span>!<br>
         This interactive terminal will provide you all the professional information about me.<br>
         You can start with the <span class="intext-highlight">"help"</span> command.<br><br>
-        <span class="intext-highlight">NOTE:</span> If you are not much of a terminal user, please press the link to a <a href="https://www.linkedin.com/in/georgy-pokazeev-6a1381199/" target="_blank">Classic CV here</a> or above the terminal.<br>
+        <span class="intext-highlight">NOTE:</span> If you are not much of a terminal user, please press the link to a <a href="/classic_cv" target="_blank">Classic CV here</a> or above the terminal.<br>
         =======================================<br>
     </div>
     <div id="output" bind:this={outputElement}>{@html output}</div>

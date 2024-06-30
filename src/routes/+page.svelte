@@ -3,7 +3,7 @@
 </script>
 
 <div class="main-content">
-    <a style="color: #FFFFFF;" href="https://www.linkedin.com/in/georgy-pokazeev-6a1381199/" target="_blank"><div class="button-classic-cv">Classic CV</div></a>
+    <a style="color: #FFFFFF;" href="/classic_cv" target="_blank"><div class="button-classic-cv">Classic CV</div></a>
     <Terminal />
 </div>
 
