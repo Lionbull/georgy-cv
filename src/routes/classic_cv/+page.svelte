@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
+  import FaArrowLeft from 'svelte-icons/fa/FaArrowLeft.svelte'
 
   let contactInfo = {
     phone: "+358456043575",
@@ -7,14 +8,17 @@
     address: "Humalniementie 5 C 24, 00840 Helsinki, Finland",
   };
 
-  let skills = ["Python", "Svelte", "SQL", "JavaScript", "CSS", "Databricks", "Django"];
+  let skills: Array<string> = ["Python", "Svelte", "SQL", "JavaScript", "CSS", "Databricks", "Django"];
 
   onMount(() => {});
 </script>
 
 <div class="global-wrapper">
 
-    <button>Download as PDF</button>
+    <div class="top-buttons">
+        <a href="https://georgypokazeev.com" class="button-link"><div class="button-icon"><FaArrowLeft/></div>Back to Terminal CV</a>
+        <button>Download as PDF</button>
+    </div>
 
     <div class="cv-container">
     <header class="header">
@@ -116,6 +120,13 @@
   @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
   @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
+  .top-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    text-decoration: none;
+  }
     .global-wrapper {
         display: flex;
         width: 100vw;
@@ -219,11 +230,16 @@
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
   }
 
   button:hover {
     background-color: #45a049;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   h2 {
@@ -250,10 +266,29 @@
     & p {
       margin: 10px 0;
     }
+  }
 
-    & h2 {
-        margin: 10px 0;
+  .button-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #45a049;
     }
 
+    & .button-icon {
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+    }
   }
 </style>
