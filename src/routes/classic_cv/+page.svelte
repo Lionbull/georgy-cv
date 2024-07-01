@@ -15,7 +15,9 @@
 <div class="global-wrapper">
 
     <div class="top-buttons">
+      <a href="georgy_pokazeev_cv.pdf" download="Georgy_Pokazeev_CV.pdf">
         <button>Download as PDF</button>
+      </a>
     </div>
 
     <div class="cv-container">
