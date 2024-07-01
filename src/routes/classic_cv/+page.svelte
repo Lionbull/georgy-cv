@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import FaArrowLeft from 'svelte-icons/fa/FaArrowLeft.svelte'
 
   let contactInfo = {
     phone: "+358456043575",
@@ -16,7 +15,6 @@
 <div class="global-wrapper">
 
     <div class="top-buttons">
-        <a href="https://georgypokazeev.com" class="button-link"><div class="button-icon"><FaArrowLeft/></div>Back to Terminal CV</a>
         <button>Download as PDF</button>
     </div>
 
