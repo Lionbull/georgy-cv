@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import FaLinkedin from 'svelte-icons/fa/FaLinkedin.svelte'
 
   let contactInfo = {
     phone: "+358456043575",
@@ -28,6 +29,7 @@
         <p><i class="fas fa-phone-alt"></i> {contactInfo.phone}</p>
         <p><i class="fas fa-envelope"></i> {contactInfo.email}</p>
         <p><i class="fas fa-map-marker-alt"></i> {contactInfo.address}</p>
+        <div class="contact-custom-icon"><div class="custom-icon"><FaLinkedin/></div><p><a href="https://www.linkedin.com/in/georgy-pokazeev-6a1381199/">LinkedIn Profile</a></p></div>
         </div>
         <div class="photo-container">
         <img
@@ -290,5 +292,29 @@
       height: 15px;
       margin-right: 10px;
     }
+  }
+
+  .contact-custom-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+    p {
+      margin: 0;
+      margin-left: 2px;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: underline;
+      color: #333;
+    }
+  }
+  
+  .custom-icon {
+    width: 20px;
+    height: 20px;
   }
 </style>
