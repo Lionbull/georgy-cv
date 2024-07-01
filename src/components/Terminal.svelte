@@ -14,8 +14,9 @@ I have over two years of experience as a Full Stack Developer doing data process
 Known for being a team player, I am always ready to help my colleagues.
 I am looking for new opportunities to grow as a professional and to contribute to the success of the company.
 I am confident that my reliability, responsibility, and eagerness to learn and tackle new challenges make me the right person to hire.
-My communication skills are on a high level, as I easily find a common language with everyone and I am fluent in Finnish, English, and Russian.`,
-        "skills": "Languages: Python, Svelte, SQL, JavaScript, TypeScript, CSS\nFrameworks: Django, React\nOther: Databricks, Git",
+My communication skills are on a high level, as I easily find a common language with everyone and I am fluent in Finnish, English, and Russian.
+`,
+        "skills": "Languages: Python, Svelte, SQL, JavaScript, TypeScript, CSS\nFrameworks: Django, React\nOther: Databricks, Git\n",
         "experience": `1. Visitory Oy - Full Stack Developer (May 2022 - Present)
 
 Main product provides a high range of statistics and statistical reports on tourism and social media. Since there was no hierarchy or role division in development team, I got experience in nearly every aspect of software development that you can imagine. I worked with Python (Django), PostgreSQL, Svelte, JavaScript, TypeScript, SQL pipelines as a part of data processing, CSS, Databricks, AWS, and Heroku.
@@ -26,18 +27,18 @@ We, as ByteTyde Oy, founded the company and are currently developing an applicat
 
 3. LUT University - Study Assistant (Sep 2021 - Jan 2022)
 
-Assisting students in "Basics of Software Development"-named university course. My responsibilities included keeping practice sessions (helping with assignments and projects) and grading deliverables afterwards.`,
-        "education": "M.Sc. (Software Engineering) - LUT University (2023 - 2025)\nB.Sc. (Software Engineering) - LUT University (2020 - 2023)",
-        "contact": 'Phone: +358456043575\nEmail: <a style="color: #FFFFFF;" href="mailto:geo1529@yahoo.com" target="_blank">geo1529@yahoo.com</a>\nLinkedIn: <a style="color: #FFFFFF;" href="https://www.linkedin.com/in/georgy-pokazeev-6a1381199/" target="_blank">https://www.linkedin.com/in/georgy-pokazeev-6a1381199/</a>',
+Assisting students in "Basics of Software Development"-named university course. My responsibilities included keeping practice sessions (helping with assignments and projects) and grading deliverables afterwards.\n`,
+        "education": "M.Sc. (Software Engineering) - LUT University (2023 - 2025)\nB.Sc. (Software Engineering) - LUT University (2020 - 2023)\n",
+        "contact": 'Phone: +358456043575\nEmail: <a style="color: #FFFFFF;" href="mailto:geo1529@yahoo.com" target="_blank">geo1529@yahoo.com</a>\nLinkedIn: <a style="color: #FFFFFF;" href="https://www.linkedin.com/in/georgy-pokazeev-6a1381199/" target="_blank">https://www.linkedin.com/in/georgy-pokazeev-6a1381199/</a>\n',
         "reference": `Marja Nurkka, Product Owner | Visitory Oy
 Email: marjanurkka@gmail.com
 Phone: 0405598053
 
 Antti Honkanen, CEO | Visitory Oy
 Email: antti.honkanen@visitory.io
-Phone: 0505416890`,
-        "github": 'First account: <a style="color: #FFFFFF;" href="https://github.com/GeorgyPk" target="_blank">https://github.com/GeorgyPk</a>\nSecond account: <a style="color: #FFFFFF;" href="https://github.com/Lionbull" target="_blank">https://github.com/Lionbull</a>',
-        "whotohire": "Are you serious?\nGeorgy Pokazeev of course!",
+Phone: 0505416890\n`,
+        "github": 'First account: <a style="color: #FFFFFF;" href="https://github.com/GeorgyPk" target="_blank">https://github.com/GeorgyPk</a>\nSecond account: <a style="color: #FFFFFF;" href="https://github.com/Lionbull" target="_blank">https://github.com/Lionbull</a>\n',
+        "whotohire": "Are you serious?\nGeorgy Pokazeev of course!\n",
     };
 
     const handleCommand = (command: string) => {
