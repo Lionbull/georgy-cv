@@ -82,14 +82,14 @@
                     <p>Marja Nurkka</p>
                     <p>Product Owner | Visitory Oy</p>
                     <p>marjanurkka@gmail.com</p>
-                    <p>+358405598053</p>
+                    <p>0405598053</p>
                 </div>
 
                 <div class="tight-text">
                     <p>Antti Honkanen</p>
                     <p>CEO | Visitory Oy</p>
                     <p>antti.honkanen@visitory.io</p>
-                    <p>+358123456789</p>
+                    <p>0505416890</p>
                 </div>
 
             </div>
