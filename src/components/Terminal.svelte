@@ -8,7 +8,7 @@
     let outputElement: any;
     
     let commands: {[key: string]: string} = {
-        "help": "Supported commands: \n",
+        "help": "",
         "aboutme": `Currently, I'm working as a Full Stack Developer at Visitory Oy and running own startup named Wave (ByteTyde Oy).
 I have over two years of experience as a Full Stack Developer doing data processing and visualization (social media data, tourism data), web development and design, automation, database optimization, cyber security, and algorithms.
 Known for being a team player, I am always ready to help my colleagues.
@@ -60,6 +60,7 @@ Phone: 0505416890\n`,
         let helpCommandOutput = commands["help"];
         helpCommandOutput = Object.keys(commands).filter(key => key !== "help").join(", ") + ", help";
         commands["help"] = helpCommandOutput;
+        commands["help"] = "Supported commands: \n" + commands["help"];
     };
 
     const executeCommand = () => {
