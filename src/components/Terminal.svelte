@@ -9,21 +9,18 @@
     
     let commands: {[key: string]: string} = {
         "help": "",
-        "aboutme": `Currently, I'm working as a Full Stack Developer at Visitory Oy and running own startup named Wave (ByteTyde Oy).
-I have over two years of experience as a Full Stack Developer doing data processing and visualization (social media data, tourism data), web development and design, automation, database optimization, cyber security, and algorithms.
-Known for being a team player, I am always ready to help my colleagues.
-I am looking for new opportunities to grow as a professional and to contribute to the success of the company.
-I am confident that my reliability, responsibility, and eagerness to learn and tackle new challenges make me the right person to hire.
-My communication skills are on a high level, as I easily find a common language with everyone and I am fluent in Finnish, English, and Russian.
+        "aboutme": `Currently, I'm working as a Full Stack Developer at Visitory Oy and running own project named Wave.
+I have over two years of experience as a Full Stack Developer doing data processing and visualization (social media data, tourism data), web development and design, automation, database optimization, cyber security, and algorithms. Known for being a team player, I am always ready to help my colleagues. I am looking for new opportunities to grow as a professional and to contribute to the success of the company.
+I am confident that my reliability, responsibility, and eagerness to learn and tackle new challenges make me the right person to hire. I am a very communicative person and I easily find a common language with everyone. I am fluent in Finnish and English.
 `,
         "skills": "Languages: Python, Svelte, SQL, JavaScript, TypeScript, CSS\nFrameworks: Django, React\nOther: Databricks, Git\n",
         "experience": `1. Visitory Oy - Full Stack Developer (May 2022 - Present)
 
-Main product provides a high range of statistics and statistical reports on tourism and social media. Since there was no hierarchy or role division in development team, I got experience in nearly every aspect of software development that you can imagine. I worked with Python (Django), PostgreSQL, Svelte, JavaScript, TypeScript, SQL pipelines as a part of data processing, CSS, Databricks, AWS, and Heroku.
+Main product provides a high range of statistics and statistical reports on tourism and social media. With no set hierarchy or strict role divisions in our development team, I gained hands-on experience in nearly every aspect of software development. I worked with Python (Django), PostgreSQL, Svelte, JavaScript, TypeScript, SQL pipelines as a part of data processing, CSS, Databricks, AWS, and Heroku.
 
 2. Bytetyde - Full Stack Software Developer (Mar 2024 - Present)
 
-We, as ByteTyde Oy, founded the company and are currently developing an application for making choosing hairstyles easier for everyone using Svelte and Python. It includes computer vision, web development, and data processing. We won two startup competitions which are IdeaRace (1st place) and *ship (3rd place) that was sponsored by Google.
+As a small side-hustle alongside my main work and Master's studies, me and my friends started developing an app called Wave for hairstyle recommendations using machine learning. We took the project from an idea to something that's now in regular use at a hair salon at the Jumbo shopping center.
 
 3. LUT University - Study Assistant (Sep 2021 - Jan 2022)
 
