@@ -5,10 +5,10 @@
   let contactInfo = {
     phone: "+358456043575",
     email: "geo1529@yahoo.com",
-    address: "Humalniementie 5 C 24, 00840 Helsinki, Finland",
+    address: "Helsinki, Finland",
   };
 
-  let skills: Array<string> = ["Python", "Svelte", "SQL", "JavaScript", "CSS", "Databricks", "Django"];
+  let skills: Array<string> = ["Python", "Django", "Angular", "Svelte", "TypeScript", "PostgreSQL", "CSS", "Tailwind", "Databricks", "PrimeNg"];
 
   onMount(() => {});
 </script>
@@ -43,8 +43,8 @@
     <section class="career-overview">
         <h2>CAREER OVERVIEW</h2>
         <p>
-          Currently, I'm working as a Full Stack Developer at Visitory Oy and running own project named Wave.
-          I have over two years of experience as a Full Stack Developer doing data processing and visualization (social media data, tourism data), web development and design, automation, database optimization, cyber security, and algorithms. Known for being a team player, I am always ready to help my colleagues. I am looking for new opportunities to grow as a professional and to contribute to the success of the company.
+          Currently, I'm working as a Full Stack Developer at Rantalainen Oy and running own project named Wave.
+          I have over four years of experience as a Full Stack Developer doing data processing and visualization (social media data, tourism data), web development and design, automation, database optimization, cyber security, and algorithms. Known for being a team player, I am always ready to help my colleagues. I am looking for new opportunities to grow as a professional and to contribute to the success of the company.
           I am confident that my reliability, responsibility, and eagerness to learn and tackle new challenges make me the right person to hire. I am a very communicative person and I easily find a common language with everyone. I am fluent in Finnish and English.
         </p>
     </section>
@@ -99,17 +99,18 @@
         </div>
         <div class="right-content">
             <h2>EXPERIENCE</h2>
+
             <h3>Full Stack Developer</h3>
-            <p>Visitory Oy | 2022 - Present</p>
+            <p>Rantalainen Oy | 2025 - Present</p>
+            <p>As a Full Stack Developer at Rantalainen Oy, I am responsible for developing and maintaining web applications, working with databases, and collaborating with cross-functional teams to deliver high-quality software solutions.</p>
+
+            <h3>Full Stack Developer</h3>
+            <p>Visitory Oy | 2022 - 2025</p>
             <p>Main product provides a high range of statistics and statistical reports on tourism and social media. With no set hierarchy or strict role divisions in our development team, I gained hands-on experience in nearly every aspect of software development. I worked with Python (Django), PostgreSQL, Svelte, JavaScript, TypeScript, SQL pipelines as a part of data processing, CSS, Databricks, AWS, and Heroku.</p>
 
             <h3>Full Stack Developer</h3>
             <p>ByteTyde Oy | 2024 - Present</p>
             <p>As a small side-hustle alongside my main work and Master's studies, me and my friends started developing an app called Wave for hairstyle recommendations using machine learning. We took the project from an idea to something that's now in regular use at a hair salon at the Jumbo shopping center.</p>
-            
-            <h3>Study Assistant</h3>
-            <p>LUT University | 2021 - 2022</p>
-            <p>Assisting students in "Basics of Software Development"-named university course. My responsibilities included keeping practice sessions (helping with assignments and projects) and grading deliverables afterwards.</p>
         </div>
     </body>
     </div>
