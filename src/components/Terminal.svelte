@@ -33,7 +33,7 @@ Assisting students in "Basics of Software Development"-named university course. 
     education:
       "M.Sc. (Software Engineering) - LUT University (2023 - 2025)\nB.Sc. (Software Engineering) - LUT University (2020 - 2023)\n",
     contact:
-      'Phone: +358456043575\nEmail: <a style="color: #FFFFFF;" href="mailto:geo1529@yahoo.com" target="_blank">geo1529@yahoo.com</a>\nLinkedIn: <a style="color: #FFFFFF;" href="https://www.linkedin.com/in/georgy-pokazeev-6a1381199/" target="_blank">https://www.linkedin.com/in/georgy-pokazeev-6a1381199/</a>\n',
+      'Phone: +358456043575\nEmail: <a style="color: #FFFFFF;" href="mailto:georgy@pokazeev.com" target="_blank">georgy@pokazeev.com</a>\nLinkedIn: <a style="color: #FFFFFF;" href="https://www.linkedin.com/in/georgy-pokazeev-6a1381199/" target="_blank">https://www.linkedin.com/in/georgy-pokazeev-6a1381199/</a>\n',
     reference: `Marja Nurkka, Product Owner | Visitory Oy
 Email: marjanurkka@gmail.com
 Phone: 0405598053

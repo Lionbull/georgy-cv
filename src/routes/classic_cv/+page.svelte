@@ -4,11 +4,11 @@
 
   let contactInfo = {
     phone: "+358456043575",
-    email: "geo1529@yahoo.com",
+    email: "georgy@pokazeev.com",
     address: "Helsinki, Finland",
   };
 
-  let skills: Array<string> = ["Python", "Django", "Angular", "Svelte", "TypeScript", "PostgreSQL", "CSS", "Tailwind", "Databricks", "PrimeNg"];
+  let skills: Array<string> = ["Python", "Svelte", "Angular", "Node.JS", "PrimeNg", "JavaScript/Typescript", "CSS/SCSS/TailwindCSS", "databricks", "SQL", "Django"];
 
   onMount(() => {});
 </script>
