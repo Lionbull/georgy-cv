@@ -1,0 +1,364 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-green: #00ff00;
+  --font-mono: "SF Mono", ui-monospace, "Cascadia Code", "Courier New", monospace;
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+    system-ui, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-system);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #svelte-body {
+    height: 100%;
+  }
+}
+
+@layer components {
+  /* Sequoia / Sonoma–style scenic wallpaper (blurred landscape) */
+  .wallpaper {
+    background-color: #2a4058;
+    background-image:
+      radial-gradient(ellipse 100% 80% at 10% 100%, #e89040 0%, transparent 50%),
+      radial-gradient(ellipse 80% 60% at 90% 95%, #c45a3c 0%, transparent 48%),
+      radial-gradient(ellipse 60% 40% at 50% 100%, #6b3a28 0%, transparent 42%),
+      radial-gradient(ellipse 90% 55% at 80% 10%, #7eb0d4 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 15% 5%, #a8c4dc 0%, transparent 50%),
+      radial-gradient(ellipse 50% 35% at 45% 35%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+      linear-gradient(
+        185deg,
+        #5e87a8 0%,
+        #7fa0ba 22%,
+        #b8a080 52%,
+        #d98b4a 72%,
+        #a35a38 100%
+      );
+  }
+
+  .wallpaper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 28% 42%, rgba(255, 255, 255, 0.18), transparent 32%),
+      radial-gradient(circle at 72% 28%, rgba(255, 230, 190, 0.14), transparent 28%);
+    mix-blend-mode: soft-light;
+  }
+
+  .wallpaper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /*
+   * Shared liquid glass — same recipe as the macOS/iOS dock.
+   * Use on buttons, sheets, menus, and other frosted chrome.
+   */
+  .glass-panel,
+  .glass-dock-bg {
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.45);
+    box-shadow:
+      0 0 0 0.5px rgba(0, 0, 0, 0.12),
+      0 18px 40px rgba(0, 0, 0, 0.28),
+      0 4px 10px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+
+  /*
+   * Dock glass lives on .glass-dock-bg (sibling under the icons).
+   * Transforming children of a backdrop-filter element re-blurs the whole dock on hover.
+   */
+  .glass-dock {
+    position: relative;
+  }
+
+  .glass-dock-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .glass-dock > *:not(.glass-dock-bg) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glass-titlebar {
+    background: linear-gradient(
+      180deg,
+      rgba(246, 246, 246, 0.92) 0%,
+      rgba(230, 230, 230, 0.88) 100%
+    );
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .glass-titlebar-dark {
+    background: linear-gradient(
+      180deg,
+      rgba(62, 62, 66, 0.96) 0%,
+      rgba(42, 42, 46, 0.96) 100%
+    );
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.35);
+  }
+
+  .glass-menubar {
+    background: rgba(246, 246, 246, 0.22);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+    border-bottom: none;
+    box-shadow:
+      inset 0 -0.5px 0 rgba(255, 255, 255, 0.28),
+      0 0.5px 0 rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .macos-window {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1e1e1e;
+
+    box-shadow:
+      0 0 0 0.5px rgba(255, 255, 255, 0.08),
+      0 22px 70px rgba(0, 0, 0, 0.38),
+      0 8px 20px rgba(0, 0, 0, 0.22);
+  }
+
+  .macos-window.is-focused {
+    box-shadow:
+      0 0 0 0.5px rgba(255, 255, 255, 0.12),
+      0 28px 80px rgba(0, 0, 0, 0.45),
+      0 10px 28px rgba(0, 0, 0, 0.28);
+  }
+
+  .macos-window:not(.is-focused) {
+    opacity: 0.96;
+  }
+
+  .macos-window:not(.is-focused) .traffic-light {
+    background: #d0d0d0 !important;
+    box-shadow: none;
+  }
+
+  .traffic-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: default;
+    transition: filter 0.12s ease;
+    position: relative;
+    box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.18);
+  }
+
+  .traffic-lights:hover .traffic-light {
+    filter: brightness(1.05);
+  }
+
+  .traffic-light.red {
+    background: linear-gradient(180deg, #ff6e66 0%, #ff5f57 45%, #e0443e 100%);
+  }
+
+  .traffic-light.yellow {
+    background: linear-gradient(180deg, #ffca42 0%, #febc2e 45%, #dea123 100%);
+  }
+
+  .traffic-light.green {
+    background: linear-gradient(180deg, #34d54c 0%, #28c840 45%, #1aad2f 100%);
+  }
+
+  .traffic-lights:hover .traffic-light.red::before,
+  .traffic-lights:hover .traffic-light.red::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 1px;
+    background: rgba(80, 0, 0, 0.7);
+  }
+
+  .traffic-lights:hover .traffic-light.red::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .traffic-lights:hover .traffic-light.red::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .traffic-lights:hover .traffic-light.yellow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 1px;
+    background: rgba(100, 50, 0, 0.75);
+    transform: translate(-50%, -50%);
+  }
+
+  .traffic-lights:hover .traffic-light.green::before,
+  .traffic-lights:hover .traffic-light.green::after {
+    content: "";
+    position: absolute;
+    width: 3.5px;
+    height: 3.5px;
+    border-style: solid;
+    border-color: rgba(0, 60, 0, 0.75);
+    border-width: 1px 0 0 1px;
+  }
+
+  .traffic-lights:hover .traffic-light.green::before {
+    top: 2.5px;
+    left: 2.5px;
+  }
+
+  .traffic-lights:hover .traffic-light.green::after {
+    bottom: 2.5px;
+    right: 2.5px;
+    transform: rotate(180deg);
+  }
+
+  /* Flat squircle app icon (no specular “3D” gloss) */
+  .app-icon {
+    position: relative;
+    border-radius: 22.5%;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  }
+
+  .dock-tooltip {
+    background: rgba(40, 40, 40, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 0.5px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  @keyframes dock-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    35% {
+      transform: translateY(-20px);
+    }
+    55% {
+      transform: translateY(-6px);
+    }
+    75% {
+      transform: translateY(-12px);
+    }
+  }
+
+  .dock-bounce {
+    animation: dock-bounce 0.7s cubic-bezier(0.28, 0.84, 0.42, 1);
+  }
+
+  @keyframes window-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .window-in {
+    animation: window-in 0.2s ease-out;
+  }
+
+  @keyframes sheet-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .sheet-in {
+    animation: sheet-in 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* WelcomeOverlay — SVG stroke draw (not expressible as Tailwind utilities) */
+  @keyframes hello-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .hello-stroke {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 32;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: hello-draw 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: calc(var(--i, 0) * 0.16s);
+  }
+
+  .hello-stroke-done {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock-bounce,
+  .window-in,
+  .sheet-in,
+  .hello-stroke {
+    animation: none;
+  }
+
+  .hello-stroke {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .wallpaper {
+    background-image:
+      radial-gradient(ellipse 100% 60% at 50% 0%, rgba(140, 180, 220, 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 50% at 20% 100%, rgba(232, 145, 72, 0.7) 0%, transparent 50%),
+      radial-gradient(ellipse 70% 45% at 90% 90%, rgba(180, 80, 90, 0.5) 0%, transparent 45%),
+      linear-gradient(180deg, #5a7f9e 0%, #9bb0c4 35%, #d4a574 70%, #b8653c 100%);
+  }
+
+  .glass-panel,
+  .glass-dock-bg {
+    backdrop-filter: blur(28px) saturate(170%);
+    -webkit-backdrop-filter: blur(28px) saturate(170%);
+  }
+}
