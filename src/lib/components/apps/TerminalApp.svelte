@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount, tick } from "svelte";
+  import { get } from "svelte/store";
   import { apps, AppId } from "$lib/stores/apps";
   import { profile, terminalCopy } from "$lib/cv/profile";
 
@@ -21,8 +22,13 @@
 
   const handleCommand = (command: string) => {
     if (command === "openclassiccv") {
-      output += `$ ${command}\nOpening Classic CV…\n\n`;
-      apps.openApp(AppId.ClassicCV);
+      if (get(apps)[AppId.ClassicCV].open) {
+        output += `$ ${command}\nClassic CV is already open.\n\n`;
+        apps.focusApp(AppId.ClassicCV);
+      } else {
+        output += `$ ${command}\nOpening Classic CV…\n\n`;
+        apps.openApp(AppId.ClassicCV);
+      }
       return;
     }
     if (command in commands) {
