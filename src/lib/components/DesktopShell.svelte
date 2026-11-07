@@ -21,17 +21,18 @@
     isDesktop = window.matchMedia(MQ).matches;
   }
 
-  function enterDesktop() {
+  function enterAfterWelcome() {
     if (deepLinkClassicCV) {
       apps.openClassicCVOnly();
       return;
     }
-    apps.openApp(AppId.Terminal);
+    // Desktop defaults to Terminal; mobile stays on the home screen
+    if (isDesktop) apps.openApp(AppId.Terminal);
   }
 
   function onWelcomeDone() {
     welcomeDone = true;
-    if (isDesktop) enterDesktop();
+    enterAfterWelcome();
   }
 
   onMount(() => {
@@ -74,7 +75,8 @@
     {#if welcomeDone}
       {#if isDesktop}
         <MenuBar />
-        <div class="absolute inset-0 pt-7 pb-24">
+        <!-- isolate + z-10: window zIndexes stay below MenuBar (z-40) / Dock (z-50) -->
+        <div class="absolute inset-0 z-10 isolate pt-7 pb-24">
           {#each WINDOW_APPS as entry}
             <Window
               appId={entry.id}
@@ -87,7 +89,12 @@
         </div>
         <Dock />
       {:else}
-        <HomeScreen />
+        {@const sheetOpen = windowDockApps.some(
+          (id) => $apps[id].open && !$apps[id].minimized
+        )}
+        <div class="absolute inset-0" inert={sheetOpen || undefined}>
+          <HomeScreen />
+        </div>
         {#each WINDOW_APPS as entry}
           <AppSheet
             appId={entry.id}

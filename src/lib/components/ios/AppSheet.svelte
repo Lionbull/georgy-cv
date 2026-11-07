@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { tick, onDestroy } from "svelte";
   import { apps, type WindowAppId } from "$lib/stores/apps";
 
   export let appId: WindowAppId;
@@ -6,23 +7,86 @@
   export let darkChrome = false;
 
   $: app = $apps[appId];
+  $: isActive = app.open && !app.minimized && app.focused;
+  $: isCovered = app.open && !app.minimized && !app.focused;
+
+  let root: HTMLDivElement;
+  let previousFocus: HTMLElement | null = null;
+  let wasActive = false;
+
+  $: void syncFocus(isActive);
+
+  async function syncFocus(active: boolean) {
+    if (active && !wasActive) {
+      previousFocus = document.activeElement as HTMLElement | null;
+      await tick();
+      const closeBtn = root?.querySelector<HTMLElement>('button[aria-label="Close"]');
+      (closeBtn ?? root)?.focus();
+    } else if (!active && wasActive) {
+      restoreFocus();
+    }
+    wasActive = active;
+  }
+
+  function restoreFocus() {
+    const el = previousFocus;
+    previousFocus = null;
+    if (el && document.contains(el)) el.focus();
+  }
+
+  function focusables(): HTMLElement[] {
+    if (!root) return [];
+    return [
+      ...root.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      ),
+    ].filter((el) => el.getClientRects().length > 0);
+  }
+
+  function onKeydown(e: KeyboardEvent) {
+    if (!isActive || e.key !== "Tab") return;
+    const nodes = focusables();
+    if (nodes.length === 0) {
+      e.preventDefault();
+      root?.focus();
+      return;
+    }
+    const first = nodes[0];
+    const last = nodes[nodes.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
 
   function close() {
     apps.closeApp(appId);
   }
+
+  onDestroy(() => {
+    if (wasActive) restoreFocus();
+  });
 </script>
 
 {#if app.open}
   <!-- Keep mounted while minimized so app content state survives restore -->
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+  <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <div
-    class="sheet-in absolute inset-0 z-50 flex flex-col"
+    bind:this={root}
+    class="sheet-in absolute inset-0 flex flex-col"
     class:hidden={app.minimized}
-    style="padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);"
+    style="padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); z-index: {50 + app.zIndex};"
     role="dialog"
-    aria-modal={!app.minimized}
+    aria-modal={isActive ? "true" : undefined}
     aria-label={title}
-    aria-hidden={app.minimized}
-    inert={app.minimized || undefined}
+    aria-hidden={app.minimized || undefined}
+    inert={app.minimized || isCovered || undefined}
+    tabindex="-1"
+    on:keydown={onKeydown}
   >
     <div
       class="glass-panel m-2 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[22px]"

@@ -44,10 +44,11 @@
   }
 
   onMount(() => {
-    document.addEventListener("pointerdown", onDocPointer, true);
+    // Bubble phase so stopMenuPointer on the launcher can stopPropagation first
+    document.addEventListener("pointerdown", onDocPointer);
     document.addEventListener("keydown", onKey);
     return () => {
-      document.removeEventListener("pointerdown", onDocPointer, true);
+      document.removeEventListener("pointerdown", onDocPointer);
       document.removeEventListener("keydown", onKey);
     };
   });

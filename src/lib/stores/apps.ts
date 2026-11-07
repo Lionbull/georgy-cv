@@ -65,6 +65,26 @@ const DEFAULT_RECTS: Record<WindowAppId, WindowRect> = {
 
 const EMPTY_RECT: WindowRect = { x: 0, y: 0, width: 0, height: 0 };
 
+/** Match Window.svelte — only used when first opening on a small screen */
+const MENUBAR = 28;
+const MIN_W = 360;
+const MIN_H = 240;
+
+/**
+ * Shrink a rect if it's wider/taller than the viewport so it isn't undraggable.
+ * Does not pin windows above the dock — overhang is allowed.
+ */
+function fitRectOnOpen(rect: WindowRect): WindowRect {
+  const maxW = browser ? Math.max(window.innerWidth, 1) : 1280;
+  const maxH = browser ? Math.max(window.innerHeight, 1) : 800;
+  const width = Math.min(Math.max(rect.width, Math.min(MIN_W, maxW)), maxW);
+  const height = Math.min(Math.max(rect.height, Math.min(MIN_H, maxH)), maxH);
+  // Keep a strip of the window (traffic lights / title bar) reachable
+  const x = Math.min(Math.max(rect.x, 120 - width), maxW - 120);
+  const y = Math.min(Math.max(rect.y, MENUBAR), maxH - 40);
+  return { x, y, width, height };
+}
+
 export const APP_META: Record<AppId, AppMeta> = {
   [AppId.Terminal]: {
     title: `Terminal — ${profile.name} CV`,
@@ -110,7 +130,7 @@ function windowInstance(id: WindowAppId, zIndex: number): AppInstance {
     maximized: false,
     focused: false,
     zIndex,
-    rect: { ...DEFAULT_RECTS[id] },
+    rect: fitRectOnOpen({ ...DEFAULT_RECTS[id] }),
   };
 }
 
@@ -170,6 +190,7 @@ function createAppsStore() {
     app.minimized = false;
     app.focused = true;
     app.zIndex = bumpZ();
+    if (wasClosed) app.rect = fitRectOnOpen(app.rect);
     return wasClosed;
   }
 

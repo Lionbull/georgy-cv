@@ -99,8 +99,13 @@
       if (resizeDir.includes("e")) width = Math.max(MIN_W, startRect.width + dx);
       if (resizeDir.includes("s")) height = Math.max(MIN_H, startRect.height + dy);
       if (resizeDir.includes("w")) {
+        const right = startRect.x + startRect.width;
         width = Math.max(MIN_W, startRect.width - dx);
-        x = startRect.x + (startRect.width - width);
+        x = right - width;
+        if (x < 0) {
+          width = right;
+          x = 0;
+        }
       }
       if (resizeDir.includes("n")) {
         height = Math.max(MIN_H, startRect.height - dy);
