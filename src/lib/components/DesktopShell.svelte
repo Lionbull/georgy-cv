@@ -35,9 +35,19 @@
     enterAfterWelcome();
   }
 
+  function syncVisualViewport() {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    // iOS keyboard resizes the visual viewport; keep sheets above it
+    document.documentElement.style.setProperty("--vv-height", `${vv.height}px`);
+    document.documentElement.style.setProperty("--vv-offset-top", `${vv.offsetTop}px`);
+  }
+
   onMount(() => {
     syncMode();
     mounted = true;
+    syncVisualViewport();
+
     const mql = window.matchMedia(MQ);
     const handler = () => {
       const wasDesktop = isDesktop;
@@ -56,6 +66,10 @@
     };
     mql.addEventListener("change", handler);
 
+    const vv = window.visualViewport;
+    vv?.addEventListener("resize", syncVisualViewport);
+    vv?.addEventListener("scroll", syncVisualViewport);
+
     const params = $page.url.searchParams;
     deepLinkClassicCV =
       params.get("app") === AppId.ClassicCV ||
@@ -64,11 +78,15 @@
       sessionStorage.removeItem("openApp");
     }
 
-    return () => mql.removeEventListener("change", handler);
+    return () => {
+      mql.removeEventListener("change", handler);
+      vv?.removeEventListener("resize", syncVisualViewport);
+      vv?.removeEventListener("scroll", syncVisualViewport);
+    };
   });
 </script>
 
-<div class="wallpaper relative h-dvh w-screen overflow-hidden">
+<div class="wallpaper relative h-dvh min-h-dvh w-full overflow-hidden">
   {#if !mounted}
     <div class="flex h-full items-center justify-center bg-black text-white/70">Loading…</div>
   {:else}

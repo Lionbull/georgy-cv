@@ -83,10 +83,29 @@
     }
   };
 
-  onMount(async () => {
+  /** Keep the prompt visible when the iOS keyboard covers the lower sheet */
+  const revealInput = async () => {
     await tick();
-    generateHelpCommand();
-    focusInput();
+    inputElement?.scrollIntoView({ block: "nearest", inline: "nearest" });
+  };
+
+  onMount(() => {
+    void tick().then(() => {
+      generateHelpCommand();
+      focusInput();
+    });
+
+    const vv = window.visualViewport;
+    const onVv = () => {
+      if (document.activeElement === inputElement) revealInput();
+    };
+    vv?.addEventListener("resize", onVv);
+    vv?.addEventListener("scroll", onVv);
+
+    return () => {
+      vv?.removeEventListener("resize", onVv);
+      vv?.removeEventListener("scroll", onVv);
+    };
   });
 </script>
 
@@ -122,6 +141,7 @@
       bind:this={inputElement}
       bind:value={input}
       on:keydown={handleKeyDown}
+      on:focus={revealInput}
       class="min-w-0 flex-1 border-none bg-transparent font-mono text-white outline-none"
       style="font-family: var(--font-mono)"
       type="text"

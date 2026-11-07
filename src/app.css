@@ -19,8 +19,25 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /*
+   * iOS Safari paints overscroll / letterbox bands from html+body, not the
+   * wallpaper div. Match the scenic gradient’s top and bottom stops.
+   */
+  html {
+    background-color: #5e87a8;
+  }
+
+  body {
+    background-color: #a35a38;
+  }
+
   #svelte-body {
     height: 100%;
+  }
+
+  :root {
+    --vv-height: 100dvh;
+    --vv-offset-top: 0px;
   }
 }
 

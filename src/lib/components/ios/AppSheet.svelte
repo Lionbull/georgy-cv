@@ -77,9 +77,9 @@
   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <div
     bind:this={root}
-    class="sheet-in absolute inset-0 flex flex-col"
+    class="sheet-in absolute right-0 left-0 flex flex-col"
     class:hidden={app.minimized}
-    style="padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); z-index: {50 + app.zIndex};"
+    style="top: var(--vv-offset-top, 0px); height: var(--vv-height, 100dvh); padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); z-index: {50 + app.zIndex};"
     role="dialog"
     aria-modal={isActive ? "true" : undefined}
     aria-label={title}
