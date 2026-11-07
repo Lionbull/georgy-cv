@@ -19,3 +19,6 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# PDF generator leftover when the committed file is locked by a viewer
+static/*.pdf.tmp
