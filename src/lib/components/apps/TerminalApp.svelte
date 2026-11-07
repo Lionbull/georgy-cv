@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, tick } from "svelte";
   import { apps, AppId } from "$lib/stores/apps";
+  import { profile, terminalCopy } from "$lib/cv/profile";
 
   let input = "";
   let commandHistory: Array<string> = [];
@@ -10,43 +11,11 @@
   let terminalElement: HTMLDivElement;
   let inputElement: HTMLInputElement;
 
+  const copy = terminalCopy();
   let commands: { [key: string]: string } = {
     help: "",
-    aboutme: `Currently, I'm working as a Full Stack Developer at Rantalainen Oy and running own project named Wave.
-I have over four years of experience as a Full Stack Developer doing data processing and visualization, web development and design, automation, database optimization, cyber security, and algorithms. Known for being a team player, I am always ready to help my colleagues. I am looking for new opportunities to grow as a professional and to contribute to the success of the company.
-I am confident that my reliability, responsibility, and eagerness to learn and tackle new challenges make me the right person to hire. I am a very communicative person and I easily find a common language with everyone. I am fluent in Finnish and English.
-`,
-    skills:
-      "Languages: Python, JavaScript, TypeScript, SQL, PostgreSQL, CSS\nFrameworks: Django, Angular, Svelte, React, Tailwind\nOther: Databricks, PrimeNg, Git\n",
-    experience: `1. Rantalainen Oy - Full Stack Developer (Feb 2025 - Present)
-
-Being a part of the biggest financial management company in Finland while also a part of a relatively small development team, I have the opportunity to work on a wide range of projects and technologies. My responsibilities include developing and maintaining web applications, working with databases, and collaborating with cross-functional teams to deliver high-quality software solutions.
-
-2. Visitory Oy - Full Stack Developer (May 2022 - Feb 2025)
-
-Main product provides a high range of statistics and statistical reports on tourism and social media. With no set hierarchy or strict role divisions in our development team, I gained hands-on experience in nearly every aspect of software development. I worked with Python (Django), PostgreSQL, Svelte, JavaScript, TypeScript, SQL pipelines as a part of data processing, CSS, Databricks, AWS, and Heroku.
-
-3. Bytetyde - Full Stack Software Developer (Mar 2024 - Feb 2026)
-
-As a small side-hustle alongside my main work and Master's studies, me and my friends started developing an app called Wave for hairstyle recommendations using machine learning. We took the project from an idea to something that's now in regular use at a hair salon at the Jumbo shopping center.
-
-4. LUT University - Study Assistant (Sep 2021 - Jan 2022)
-
-Assisting students in "Basics of Software Development"-named university course. My responsibilities included keeping practice sessions (helping with assignments and projects) and grading deliverables afterwards.\n`,
-    education:
-      "M.Sc. (Software Engineering) - LUT University (2023 - 2025)\nB.Sc. (Software Engineering) - LUT University (2020 - 2023)\n",
-    contact:
-      'Phone: +358456043575\nEmail: <a class="text-white underline" href="mailto:georgy@pokazeev.com" target="_blank">georgy@pokazeev.com</a>\nLinkedIn: <a class="text-white underline" href="https://www.linkedin.com/in/georgy-pokazeev-6a1381199/" target="_blank">https://www.linkedin.com/in/georgy-pokazeev-6a1381199/</a>\n',
-    reference: `Marja Nurkka, Product Owner | Visitory Oy
-Email: marjanurkka@gmail.com
-Phone: 0405598053
-
-Antti Honkanen, CEO | Visitory Oy
-Email: antti.honkanen@visitory.io
-Phone: 0505416890\n`,
-    github:
-      'First account: <a class="text-white underline" href="https://github.com/GeorgyPk" target="_blank">https://github.com/GeorgyPk</a>\nSecond account: <a class="text-white underline" href="https://github.com/Lionbull" target="_blank">https://github.com/Lionbull</a>\n',
-    whotohire: "Are you serious?\nGeorgy Pokazeev of course!\n",
+    ...copy,
+    whotohire: `Are you serious?\n${profile.name} of course!\n`,
     openclassiccv: "Opening Classic CV…\n",
   };
 
@@ -132,7 +101,7 @@ Phone: 0505416890\n`,
   <div class="text-white">
     =======================================<br />
     Welcome to the CV of
-    <span class="text-terminal-green">Georgy Pokazeev</span>!<br />
+    <span class="text-terminal-green">{profile.name}</span>!<br />
     This interactive terminal will provide you all the professional information
     about me.<br />
     You can start with the <span class="text-terminal-green">"help"</span>

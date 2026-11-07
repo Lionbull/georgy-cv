@@ -2,7 +2,8 @@
   import { onMount, onDestroy } from "svelte";
   import DiApple from "svelte-icons/di/DiApple.svelte";
   import IoIosWifi from "svelte-icons/io/IoIosWifi.svelte";
-  import IoIosBatteryCharging from 'svelte-icons/io/IoIosBatteryCharging.svelte'
+  import IoIosBatteryCharging from "svelte-icons/io/IoIosBatteryCharging.svelte";
+  import { profile } from "$lib/cv/profile";
 
   let time = "";
   let interval: ReturnType<typeof setInterval>;
@@ -54,7 +55,7 @@
       type="button"
       class="flex h-5.5 items-center rounded-[5px] px-2.5 font-bold hover:bg-black/10 active:bg-[#0a84ff] active:text-white"
     >
-      Georgy Pokazeev
+      {profile.name}
     </button>
     <button
       type="button"

@@ -1,5 +1,6 @@
 import { writable, get } from "svelte/store";
 import { browser } from "$app/environment";
+import { profile } from "$lib/cv/profile";
 
 export const AppKind = {
   Window: "window",
@@ -66,7 +67,7 @@ const EMPTY_RECT: WindowRect = { x: 0, y: 0, width: 0, height: 0 };
 
 export const APP_META: Record<AppId, AppMeta> = {
   [AppId.Terminal]: {
-    title: "Terminal — Georgy Pokazeev CV",
+    title: `Terminal — ${profile.name} CV`,
     label: "Terminal",
     kind: AppKind.Window,
   },
@@ -79,16 +80,13 @@ export const APP_META: Record<AppId, AppMeta> = {
     title: "LinkedIn",
     label: "LinkedIn",
     kind: AppKind.Link,
-    href: "https://www.linkedin.com/in/georgy-pokazeev-6a1381199/",
+    href: profile.contact.linkedin,
   },
   [AppId.GitHub]: {
     title: "GitHub",
     label: "GitHub",
     kind: AppKind.Menu,
-    links: [
-      { label: "GeorgyPk", href: "https://github.com/GeorgyPk" },
-      { label: "Lionbull", href: "https://github.com/Lionbull" },
-    ],
+    links: [...profile.github],
   },
 };
 
