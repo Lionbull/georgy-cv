@@ -134,7 +134,8 @@
   <div class="whitespace-pre-wrap text-terminal-green" bind:this={outputElement}>
     {@html output}
   </div>
-  <div class="flex">
+  <!-- text-base (16px): iOS Safari zooms focused inputs smaller than 16px -->
+  <div class="flex text-base">
     <span class="shrink-0 text-terminal-green">$&nbsp;</span>
     <!-- svelte-ignore a11y-autofocus -->
     <input
@@ -142,7 +143,7 @@
       bind:value={input}
       on:keydown={handleKeyDown}
       on:focus={revealInput}
-      class="min-w-0 flex-1 border-none bg-transparent font-mono text-white outline-none"
+      class="min-w-0 flex-1 border-none bg-transparent font-mono text-base text-white outline-none"
       style="font-family: var(--font-mono)"
       type="text"
       aria-label="Terminal command"
